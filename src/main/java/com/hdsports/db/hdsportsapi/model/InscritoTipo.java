@@ -1,4 +1,4 @@
-package model;
+package com.hdsports.db.hdsportsapi.model;
 
 public enum InscritoTipo {
     DEFERIDO,

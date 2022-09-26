@@ -1,4 +1,4 @@
-package model;
+package com.hdsports.db.hdsportsapi.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -25,6 +25,9 @@ public class Eventos {
 
     @Enumerated(EnumType.STRING)
     private EventoTipo tipoEvento;
+
+    @Embedded
+    private Inscrito inscritos;
 
     public Integer getId() {
         return id;

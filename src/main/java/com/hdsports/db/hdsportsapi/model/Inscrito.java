@@ -1,16 +1,16 @@
-package model;
+package com.hdsports.db.hdsportsapi.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import java.time.LocalDateTime;
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "tab_Inscrito")
 public class Inscrito {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //diz para o banco de dados que o Postgre que vai gerar os ID
-    private long numInscricao;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(name="nome_inscrito")
     private String nome;
@@ -28,13 +28,12 @@ public class Inscrito {
     @Embedded
     private Eventos eventosInscrito;
 
-
-    public long getNumInscricao() {
-        return numInscricao;
+    public Integer getId() {
+        return id;
     }
 
-    public void setNumInscricao(long numInscricao) {
-        this.numInscricao = numInscricao;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getNome() {
