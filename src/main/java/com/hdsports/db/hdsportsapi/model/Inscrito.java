@@ -1,29 +1,25 @@
 package com.hdsports.db.hdsportsapi.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "tab_Inscrito")
+@Table(name="tab_inscritos")
 public class Inscrito {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name="nome_inscrito")
     private String nome;
 
-    @Column(name="CPF_inscrito")
-    private String cpf;
+    private  String cpf;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    @Column(name="data_nascimento_inscrito")
     private LocalDateTime dataNascimento;
 
-    @Enumerated(EnumType.STRING) //gera uma coluna de tipo que será o próprio tipo
-    private InscritoTipo inscricao;
+    @Enumerated(EnumType.STRING)
+    private InscritoTipo inscritoTipo;
 
     @Embedded
     private Eventos eventosInscrito;
@@ -60,12 +56,12 @@ public class Inscrito {
         this.dataNascimento = dataNascimento;
     }
 
-    public InscritoTipo getInscricao() {
-        return inscricao;
+    public InscritoTipo getInscritoTipo() {
+        return inscritoTipo;
     }
 
-    public void setInscricao(InscritoTipo inscricao) {
-        this.inscricao = inscricao;
+    public void setInscritoTipo(InscritoTipo inscritoTipo) {
+        this.inscritoTipo = inscritoTipo;
     }
 
     public Eventos getEventosInscrito() {
@@ -75,4 +71,5 @@ public class Inscrito {
     public void setEventosInscrito(Eventos eventosInscrito) {
         this.eventosInscrito = eventosInscrito;
     }
+
 }
