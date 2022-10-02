@@ -4,9 +4,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@Table(name="tab_eventos")
 public class Eventos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +27,8 @@ public class Eventos {
     private EventoTipo tipoEvento;
 
     @Embedded
-    private Inscrito inscritos;
+    @OneToMany(cascade = CascadeType.ALL) //as auterações em eventos refletem nos inscritos
+    private List<Inscrito> inscritos;
 
     public Integer getId() {
         return id;

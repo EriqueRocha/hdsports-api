@@ -1,17 +1,22 @@
 package com.hdsports.db.hdsportsapi.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
-@Table(name="tab_inscritos")
 public class Inscrito {
     @Id
+    @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String nome;
+
+    private String peso;
 
     private  String cpf;
 
@@ -21,8 +26,17 @@ public class Inscrito {
     @Enumerated(EnumType.STRING)
     private InscritoTipo inscritoTipo;
 
-    @Embedded
-    private Eventos eventosInscrito;
+    public String getPeso() {
+        return peso;
+    }
+
+    public void setPeso(String peso) {
+        this.peso = peso;
+    }
+
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL) //um inscrito pode ter vários eventos e todas as alterações serão espelhadas para a outra tabela
+    private List<Eventos> eventosInscrito;
 
     public Integer getId() {
         return id;
@@ -64,12 +78,11 @@ public class Inscrito {
         this.inscritoTipo = inscritoTipo;
     }
 
-    public Eventos getEventosInscrito() {
+    public List<Eventos> getEventosInscrito() {
         return eventosInscrito;
     }
 
-    public void setEventosInscrito(Eventos eventosInscrito) {
+    public void setEventosInscrito(List<Eventos> eventosInscrito) {
         this.eventosInscrito = eventosInscrito;
     }
-
 }
